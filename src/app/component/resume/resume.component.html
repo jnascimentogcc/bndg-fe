@@ -1,0 +1,28 @@
+<div class="container-resume">
+  <app-title-body title="List of Curriculum Vitae" explainTitle="List of possible candidates"/>
+  <div>
+    <div class="container-line header-row-resume">
+      <div class="column-resume-name left-column-resume">Candidate Name</div>
+      <div class="column-resume-position both-column-resume">Candidate Position</div>
+      <div class="column-resume-action"></div>
+    </div>
+    @for (resume of arrResume; track $index) {
+      <div class="container-line odd-row">
+        <div class="column-resume-name left-column-resume href-link ellipsis" (click)="editResume(resume.id)">{{ resume.candidate_name }}</div>
+        <div class="column-resume-position left-column-resume href-link ellipsis" (click)="editResume(resume.id)">{{ resume.profile }}</div>
+        <div class="column-resume-action" (click)="showConfirm()"><i class='bx bx-trash'></i> </div>
+      </div>
+    }
+    <app-upload-file textButton="Upload Resume" [uploadType]="UploadType.RESUME"/>
+  </div>
+</div>
+
+<app-confirm-modal
+  #confirmModal
+  [title]="'Delete Curriculum Vitae'"
+  [message]="'Are you sure you want to delete this Curriculum Vitae?'"
+  (confirmed)="handleConfirm()"
+  (canceled)="handleCancel()">
+</app-confirm-modal>
+
+<app-spinner [loading]="loadingData"/>

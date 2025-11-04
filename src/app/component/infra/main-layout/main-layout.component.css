@@ -1,0 +1,19 @@
+.container-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-body {
+  display: flex;
+  flex-direction: row;
+}
+
+.container-navbar {
+  z-index: 1000;
+}
+
+.container-router-outlet {
+  width: 100%;
+  margin-top: 80px;
+  margin-left: 235px;
+}
