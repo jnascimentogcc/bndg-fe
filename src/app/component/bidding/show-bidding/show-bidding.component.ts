@@ -47,7 +47,7 @@ export class ShowBiddingComponent {
         this.contractAuthority = res.data['contract_authority']
         this.reference = res.data['reference']
         this.pp = res.data['procedure_program_file']
-        this.ce = res.data['procedure_program_file']
+        this.ce = res.data['notebook_charge_file']
         this.rational = res.data['rational']
         this.loadingData = false;
         this.profileService.getAllProfiles(this.queryParams['bid']).subscribe({
