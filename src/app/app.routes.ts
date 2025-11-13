@@ -3,27 +3,24 @@ import {MainLayoutComponent} from './component/infra/main-layout/main-layout.com
 import {EmptyLayoutComponent} from './component/infra/empty-layout/empty-layout.component';
 import {ServerErrorComponent} from './component/infra/server-error/server-error.component';
 import {NotFoundComponent} from './component/infra/not-found/not-found.component';
-import {ResumeComponent} from './component/resume/resume.component';
-import {BiddingComponent} from './component/bidding/bidding.component';
-import {ProjectComponent} from './component/project/project.component';
-import {ShowBiddingComponent} from './component/bidding/show-bidding/show-bidding.component';
+import {LoginComponent} from './component/iam/login/login.component';
+import {HomeComponent} from './component/protected/home/home.component';
+import {ListResumeComponent} from './component/protected/list-resume/list-resume.component';
 
 export const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
     children: [
-      {path: 'resume', component: ResumeComponent},
-      {path: 'bidding', component: BiddingComponent},
-      {path: 'project', component: ProjectComponent},
-      {path: 'showBidding', component: ShowBiddingComponent},
+      {path: '', component: HomeComponent, title: 'Bidding Platform :: Dashboard'},
+      {path: 'list-resume', component: ListResumeComponent, title: 'Bidding Platform :: Lista de Candidatos'},
     ],
   },
   {
     path: '',
     component: EmptyLayoutComponent,
     children: [
-      // {path: 'register', component: RegisterComponent},
+      {path: 'login', component: LoginComponent, title: 'Bidding Platform :: Login'},
     ]
   },
   {path: 'serverError', component: ServerErrorComponent},
