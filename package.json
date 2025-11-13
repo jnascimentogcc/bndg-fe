@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "serve": "ng serve",
+    "start": "node server.js",
+    "build": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -32,6 +33,7 @@
     "@ngrx/signals": "^20.0.0",
     "bootstrap": "^5.3.7",
     "dompurify": "^3.2.6",
+    "express": "^5.1.0",
     "highlight.js": "^11.11.1",
     "marked": "^16.1.2",
     "marked-highlight": "^2.2.2",
