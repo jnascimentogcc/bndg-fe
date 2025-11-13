@@ -3,7 +3,7 @@
   <p class="text-gray-600">
     <app-dynamic-table
       [columns]="arrColumns"
-      [data]="arrData"
+      [data]="arrResume"
       [pageSizeOptions]="[10]"
     >
     </app-dynamic-table>
@@ -17,3 +17,5 @@
            (closed)="isModalOpen = false" (confirmed)="onConfirm()">
   <p>UPLOAD</p>
 </app-modal-box>
+
+<app-spinner [isLoading]="isLoading"></app-spinner>
