@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import {DynamicTableComponent} from '../../infra/dynamic-table/dynamic-table.component';
+import {ModalBoxComponent} from '../../infra/modal-box/modal-box.component';
 
 @Component({
   selector: 'app-list-resume',
   imports: [
-    DynamicTableComponent
+    DynamicTableComponent,
+    ModalBoxComponent
   ],
   templateUrl: './list-resume.component.html',
   styleUrl: './list-resume.component.css',
@@ -30,4 +32,14 @@ export class ListResumeComponent {
     { name: 'Candidato 1', profile: 'Desenvolvedor' },
     { name: 'Candidato 2', profile: 'Analista de Sistemas' },
   ]
+
+  // Modal Box Config
+  isModalOpen = false;
+  openModal() {
+    this.isModalOpen = true;
+  }
+  onConfirm() {
+    alert('Confirmed!');
+    this.isModalOpen = false;
+  }
 }
