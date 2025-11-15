@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalBoxComponent } from './modal-box.component';
+import { ListBidComponent } from './list-bid.component';
 
-describe('ModalBoxComponent', () => {
-  let component: ModalBoxComponent;
-  let fixture: ComponentFixture<ModalBoxComponent>;
+describe('ListBidComponent', () => {
+  let component: ListBidComponent;
+  let fixture: ComponentFixture<ListBidComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ModalBoxComponent]
+      imports: [ListBidComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ModalBoxComponent);
+    fixture = TestBed.createComponent(ListBidComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

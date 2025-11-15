@@ -11,11 +11,19 @@ export class SidebarComponent {
 
   router = inject(Router)
 
+  protected goHome() {
+    this.router.navigate(['']).then();
+  }
+
   protected goListResume() {
     this.router.navigate(['/list-resume']).then();
   }
 
-  protected goHome() {
-    this.router.navigate(['']).then();
+  protected goListBid() {
+    this.router.navigate(['/list-bid']).then();
+  }
+
+  protected goListProject() {
+    this.router.navigate(['/list-project']).then();
   }
 }

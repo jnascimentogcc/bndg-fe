@@ -1,6 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {DynamicTableComponent} from '../../infra/dynamic-table/dynamic-table.component';
-import {ModalBoxComponent} from '../../infra/modal-box/modal-box.component';
+import {UploadResumeComponent} from './upload-resume/upload-resume.component';
 import {SpinnerComponent} from '../../infra/spinner/spinner.component';
 import {ResumeService} from '../../../service/resume.service';
 
@@ -8,7 +8,7 @@ import {ResumeService} from '../../../service/resume.service';
   selector: 'app-list-resume',
   imports: [
     DynamicTableComponent,
-    ModalBoxComponent,
+    UploadResumeComponent,
     SpinnerComponent
   ],
   templateUrl: './list-resume.component.html',
@@ -27,8 +27,8 @@ export class ListResumeComponent {
     this.isModalOpen = true;
   }
   onConfirm() {
-    alert('Confirmed!');
     this.isModalOpen = false;
+    this.fetchResume();
   }
 
   // Spinner Config
@@ -40,9 +40,7 @@ export class ListResumeComponent {
   // Resume Service
   resumeService = inject(ResumeService)
 
-  arrResume: Array<any> = []
-  loadingData = true;
-  constructor() {
+  fetchResume() {
     this.toggleLoading();
     this.resumeService.getAllResume().subscribe({
       next: res => {
@@ -52,5 +50,13 @@ export class ListResumeComponent {
       error: err => {},
       complete: () => {}
     })
+  }
+
+  arrResume: Array<any> = []
+  constructor() {
+    this.fetchResume();
+    // setInterval(() => {
+    //   this.fetchResume();
+    // }, 5000)
   }
 }

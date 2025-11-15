@@ -2,14 +2,14 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NgIf} from '@angular/common';
 
 @Component({
-  selector: 'app-modal-box',
+  selector: 'app-upload-bid',
   imports: [
     NgIf
   ],
-  templateUrl: './modal-box.component.html',
-  styleUrl: './modal-box.component.css',
+  templateUrl: './upload-bid.component.html',
+  styleUrl: './upload-bid.component.css',
 })
-export class ModalBoxComponent {
+export class UploadBidComponent {
 
   @Input() isOpen = false;
   @Input() title = 'Modal Title';

@@ -15,6 +15,13 @@ export class ResumeService {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' // TODO: + localStorage.getItem('token'),
     });
-    return this.httpClient.get<ResumeListResponse>('http://localhost:5000/resume/list', {headers})
+    return this.httpClient.get<ResumeListResponse>('http://localhost:5000/resume/list', {headers});
+  }
+
+  uploadResume(formData: FormData): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' // TODO: + localStorage.getItem('token'),
+    });
+    return this.httpClient.post('http://localhost:5000/resume/upload', formData, {headers});
   }
 }
