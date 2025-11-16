@@ -49,11 +49,11 @@
       </td>
       <td class="px-4 py-3">
         <div class="flex items-center gap-2">
-          <button (click)="$event.stopPropagation(); editRow(row)"
-                  class="text-sm px-2 py-1 rounded-md border border-gray-200 hover:bg-gray-50">Edit
+          <button (click)="$event.stopPropagation(); evaluateBid(row)"
+                  class="text-sm px-2 py-1 rounded-md border border-gray-200 hover:bg-gray-50 cursor-pointer">Analisar
           </button>
-          <button (click)="$event.stopPropagation(); deleteRow(row)"
-                  class="text-sm px-2 py-1 rounded-md border border-red-200 text-red-600 hover:bg-red-50">Delete
+          <button (click)="$event.stopPropagation(); previewRational(row)"
+                  class="text-sm px-2 py-1 rounded-md border border-red-200 text-red-600 hover:bg-red-50">Visualizar
           </button>
         </div>
       </td>

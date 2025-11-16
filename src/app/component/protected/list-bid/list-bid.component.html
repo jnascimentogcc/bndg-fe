@@ -5,6 +5,8 @@
       [columns]="arrColumns"
       [data]="arrBid"
       [pageSizeOptions]="[10]"
+      (evaluateClick)="onEvaluate($event)"
+      (previewClick)="onPreview($event)"
     >
     </app-dynamic-table>
   </p>

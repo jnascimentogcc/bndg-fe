@@ -47,6 +47,8 @@ export class DynamicTableComponent implements OnChanges {
 
 
   @Output() rowClick = new EventEmitter<any>();
+  @Output() evaluateClick = new EventEmitter<any>();
+  @Output() previewClick = new EventEmitter<any>();
   @Output() selectionChange = new EventEmitter<any[]>();
 
 
@@ -185,13 +187,13 @@ export class DynamicTableComponent implements OnChanges {
   }
 
   // simple actions (emit events or placeholder behavior)
-  editRow(row: any) {
+  evaluateBid(row: any) {
     // emit a row click with action object or implement event outputs for more actions
-    this.rowClick.emit({ action: 'edit', row });
+    this.evaluateClick.emit(row);
   }
 
-  deleteRow(row: any) {
-    this.rowClick.emit({ action: 'delete', row });
+  previewRational(row: any) {
+    this.previewClick.emit(row);
   }
 
 }
