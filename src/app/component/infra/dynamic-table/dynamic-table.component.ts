@@ -46,7 +46,7 @@ export class DynamicTableComponent implements OnChanges {
   @Input() data: any[] = [];
   @Input() pageSizeOptions: number[] = [5, 10, 25];
   @Input() showSelection = false;
-
+  @Input() entityType: any = undefined;
 
   @Output() rowClick = new EventEmitter<any>();
   @Output() evaluateClick = new EventEmitter<any>();
@@ -190,10 +190,7 @@ export class DynamicTableComponent implements OnChanges {
   }
 
   row: any = undefined
-  // simple actions (emit events or placeholder behavior)
   evaluateBid(row: any) {
-    // emit a row click with action object or implement event outputs for more actions
-    // this.evaluateClick.emit(row);
     this.row = row;
     this.openModal();
   }
@@ -210,8 +207,7 @@ export class DynamicTableComponent implements OnChanges {
   onConfirmModal() {
     this.isModalOpen = false;
     if (this.row) {
-      console.log('EVAL')
-      // this.evaluateClick.emit(this.row);
+      this.evaluateClick.emit(this.row);
     }
   }
 
