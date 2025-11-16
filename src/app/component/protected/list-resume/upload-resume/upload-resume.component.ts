@@ -43,7 +43,8 @@ export class UploadResumeComponent {
         this.confirmed.emit();
       },
       error: (err) => console.error('Upload error', err),
-      complete: () => {}
+      complete: () => {
+      }
     })
 
   }
@@ -60,7 +61,6 @@ export class UploadResumeComponent {
     this.files = $event.dataTransfer
       ? Array.from($event.dataTransfer.files)
       : [];
-    console.log(this.files);
   }
 
   onDragOver($event: DragEvent) {

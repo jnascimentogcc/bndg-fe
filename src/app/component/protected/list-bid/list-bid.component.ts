@@ -1,15 +1,13 @@
 import {Component, inject} from '@angular/core';
 import {DynamicTableComponent} from '../../infra/dynamic-table/dynamic-table.component';
-import {UploadResumeComponent} from '../list-resume/upload-resume/upload-resume.component';
 import {SpinnerComponent} from '../../infra/spinner/spinner.component';
-import {BiddingService} from '../../../service/bidding.service';
+import {BidService} from '../../../service/bid.service';
 import {UploadBidComponent} from './upload-bid/upload-bid.component';
 
 @Component({
   selector: 'app-list-bid',
   imports: [
     DynamicTableComponent,
-    UploadResumeComponent,
     SpinnerComponent,
     UploadBidComponent
   ],
@@ -33,8 +31,8 @@ export class ListBidComponent {
     this.isModalOpen = true;
   }
   onConfirm() {
-    alert('Confirmed!');
     this.isModalOpen = false;
+    this.fetchBid();
   }
 
   // Spinner Config
@@ -44,10 +42,9 @@ export class ListBidComponent {
   }
 
   // Resume Service
-  biddingService = inject(BiddingService)
+  biddingService = inject(BidService)
 
-  arrBid: Array<any> = []
-  constructor() {
+  fetchBid() {
     this.toggleLoading();
     this.biddingService.getAllBid().subscribe({
       next: res => {
@@ -57,5 +54,10 @@ export class ListBidComponent {
       error: err => {},
       complete: () => {}
     })
+  }
+
+  arrBid: Array<any> = []
+  constructor() {
+    this.fetchBid();
   }
 }

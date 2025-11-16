@@ -1,15 +1,12 @@
 import {Component, inject} from '@angular/core';
 import {DynamicTableComponent} from '../../infra/dynamic-table/dynamic-table.component';
-import {UploadResumeComponent} from '../list-resume/upload-resume/upload-resume.component';
 import {SpinnerComponent} from '../../infra/spinner/spinner.component';
-import {BiddingService} from '../../../service/bidding.service';
 import {ProjectService} from '../../../service/project.service';
 
 @Component({
   selector: 'app-list-project',
   imports: [
     DynamicTableComponent,
-    UploadResumeComponent,
     SpinnerComponent
   ],
   templateUrl: './list-project.component.html',

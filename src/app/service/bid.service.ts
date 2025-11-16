@@ -7,7 +7,7 @@ import {ActivatedRoute} from '@angular/router';
 @Injectable({
   providedIn: 'root'
 })
-export class BiddingService {
+export class BidService {
 
   httpClient = inject(HttpClient);
 
