@@ -24,6 +24,7 @@
 import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {NgForOf, NgIf, NgTemplateOutlet} from '@angular/common';
+import {ModalBoxComponent} from '../modal-box/modal-box.component';
 
 @Component({
   selector: 'app-dynamic-table',
@@ -31,7 +32,8 @@ import {NgForOf, NgIf, NgTemplateOutlet} from '@angular/common';
     FormsModule,
     NgIf,
     NgTemplateOutlet,
-    NgForOf
+    NgForOf,
+    ModalBoxComponent
   ],
   templateUrl: './dynamic-table.component.html',
   styleUrl: './dynamic-table.component.css',
@@ -187,14 +189,30 @@ export class DynamicTableComponent implements OnChanges {
     this.selectionChange.emit(this.selected.slice());
   }
 
+  row: any = undefined
   // simple actions (emit events or placeholder behavior)
   evaluateBid(row: any) {
     // emit a row click with action object or implement event outputs for more actions
-    this.evaluateClick.emit(row);
+    // this.evaluateClick.emit(row);
+    this.row = row;
+    this.openModal();
   }
 
   previewRational(row: any) {
     this.previewClick.emit(row);
+  }
+
+  // Modal Config
+  isModalOpen = false;
+  openModal() {
+    this.isModalOpen = true;
+  }
+  onConfirmModal() {
+    this.isModalOpen = false;
+    if (this.row) {
+      console.log('EVAL')
+      // this.evaluateClick.emit(this.row);
+    }
   }
 
 }

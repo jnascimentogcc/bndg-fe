@@ -53,7 +53,7 @@
                   class="text-sm px-2 py-1 rounded-md border border-gray-200 hover:bg-gray-50 cursor-pointer">Analisar
           </button>
           <button (click)="$event.stopPropagation(); previewRational(row)"
-                  class="text-sm px-2 py-1 rounded-md border border-red-200 text-red-600 hover:bg-red-50">Visualizar
+                  class="text-sm px-2 py-1 rounded-md border border-red-200 text-red-600 hover:bg-red-50 cursor-pointer">Visualizar
           </button>
         </div>
       </td>
@@ -71,24 +71,29 @@
 
 <!-- Pagination -->
 <div class="px-4 py-3 border-t border-gray-100 flex items-center justify-between">
-  <div class="text-sm text-gray-600">Showing {{ startRecord }} - {{ endRecord }} of {{ filteredData.length }}</div>
+  <div class="text-sm text-gray-600">A exibir {{ startRecord }} - {{ endRecord }} de {{ filteredData.length }}</div>
   <div class="flex items-center gap-2">
     <button (click)="goToPage(1)" [disabled]="page === 1"
-            class="px-2 py-1 rounded-md border border-gray-200 text-sm disabled:opacity-50">First
+            class="px-2 py-1 rounded-md border border-gray-200 text-sm disabled:opacity-50">Primeiro
     </button>
     <button (click)="goToPage(page-1)" [disabled]="page === 1"
-            class="px-2 py-1 rounded-md border border-gray-200 text-sm disabled:opacity-50">Prev
+            class="px-2 py-1 rounded-md border border-gray-200 text-sm disabled:opacity-50">Anterior
     </button>
-    <span class="px-3 text-sm">Page</span>
+    <span class="px-3 text-sm">Página</span>
     <input type="number" [(ngModel)]="pageInput" (change)="goToPage(pageInput)" min="1" [max]="totalPages"
            class="w-16 rounded-md border border-gray-200 px-2 py-1 text-sm"/>
 
 
     <button (click)="goToPage(page+1)" [disabled]="page === totalPages"
-            class="px-2 py-1 rounded-md border border-gray-200 text-sm disabled:opacity-50">Next
+            class="px-2 py-1 rounded-md border border-gray-200 text-sm disabled:opacity-50">Próximo
     </button>
     <button (click)="goToPage(totalPages)" [disabled]="page === totalPages"
-            class="px-2 py-1 rounded-md border border-gray-200 text-sm disabled:opacity-50">Last
+            class="px-2 py-1 rounded-md border border-gray-200 text-sm disabled:opacity-50">Último
     </button>
   </div>
 </div>
+
+<app-modal-box [isOpen]="isModalOpen" title="Confirma Análise?"
+               (closed)="isModalOpen = false" (confirmed)="onConfirmModal()">
+  <p>Confirma a análise do concurso?</p>
+</app-modal-box>

@@ -30,7 +30,7 @@
         @for (experience of criteria.experiences; track $index) {
           <div class="text-amber-500 mt-2 ml-3">{{ experience.entity }}</div>
           <div class="text-gray-950 ml-5">{{ experience.period }}</div>
-          <div class="text-gray-950 ml-5">{{ experience.experience }}</div>
+          <div class="text-gray-950 ml-5"><span [innerHTML]="convertExperience(experience.experience)"></span></div>
         }
       }
     </li>

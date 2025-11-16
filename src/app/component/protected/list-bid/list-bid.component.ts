@@ -1,19 +1,17 @@
-import {Component, inject, OnDestroy, OnInit} from '@angular/core';
+import {Component, inject, OnDestroy} from '@angular/core';
 import {DynamicTableComponent} from '../../infra/dynamic-table/dynamic-table.component';
 import {SpinnerComponent} from '../../infra/spinner/spinner.component';
 import {BidService} from '../../../service/bid.service';
 import {UploadBidComponent} from './upload-bid/upload-bid.component';
 import {transformEvaluate} from '../../../util/utils';
 import {Router} from '@angular/router';
-import {ModalBoxComponent} from '../../infra/modal-box/modal-box.component';
 
 @Component({
   selector: 'app-list-bid',
   imports: [
     DynamicTableComponent,
     SpinnerComponent,
-    UploadBidComponent,
-    ModalBoxComponent
+    UploadBidComponent
   ],
   templateUrl: './list-bid.component.html',
   styleUrl: './list-bid.component.css',
@@ -98,7 +96,6 @@ export class ListBidComponent implements OnDestroy {
       error: err => {},
       complete: () => {}
     })
-    console.log($event);
   }
 
   router = inject(Router)

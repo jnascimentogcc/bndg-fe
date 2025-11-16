@@ -67,4 +67,8 @@ export class PreviewBidComponent implements OnInit {
   convertRational() {
     return marked.parse(this.rational).toString();
   }
+
+  protected convertExperience(experience: string) {
+    return marked.parse(experience).toString();
+  }
 }

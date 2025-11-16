@@ -1,17 +1,15 @@
-import {Component, inject, OnDestroy, OnInit} from '@angular/core';
+import {Component, inject, OnDestroy} from '@angular/core';
 import {DynamicTableComponent} from '../../infra/dynamic-table/dynamic-table.component';
 import {UploadResumeComponent} from './upload-resume/upload-resume.component';
 import {SpinnerComponent} from '../../infra/spinner/spinner.component';
 import {ResumeService} from '../../../service/resume.service';
-import {ModalBoxComponent} from '../../infra/modal-box/modal-box.component';
 
 @Component({
   selector: 'app-list-resume',
   imports: [
     DynamicTableComponent,
     UploadResumeComponent,
-    SpinnerComponent,
-    ModalBoxComponent
+    SpinnerComponent
   ],
   templateUrl: './list-resume.component.html',
   styleUrl: './list-resume.component.css',
