@@ -49,6 +49,7 @@ export class DynamicTableComponent implements OnChanges {
   @Output() rowClick = new EventEmitter<any>();
   @Output() evaluateClick = new EventEmitter<any>();
   @Output() previewClick = new EventEmitter<any>();
+
   @Output() selectionChange = new EventEmitter<any[]>();
 
 

@@ -1,0 +1,24 @@
+<div *ngIf="isOpen" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
+  <div class="bg-white rounded-lg shadow-lg w-full max-w-md p-6 animate-fade-in">
+    <div class="flex justify-between items-center border-b pb-3 mb-4">
+      <h3 class="text-lg font-semibold text-gray-800">{{ title }}</h3>
+      <button (click)="close()" class="text-gray-400 hover:text-gray-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none"
+             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+
+    <div class="text-gray-600 mb-6">
+      <ng-content></ng-content>
+    </div>
+
+
+    <div class="flex justify-end space-x-3">
+      <button (click)="close()" class="px-4 py-2 text-gray-600 hover:text-gray-800">Cancel</button>
+      <button (click)="confirm()" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Confirm</button>
+    </div>
+  </div>
+</div>
