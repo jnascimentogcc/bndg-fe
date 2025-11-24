@@ -1,0 +1,104 @@
+<div class="w-full bg-white rounded-lg shadow-sm overflow-hidden">
+</div>
+
+<div class="overflow-x-auto">
+  <table class="min-w-full text-sm text-left">
+    <thead class="bg-gray-50">
+    <tr>
+      <th *ngIf="showSelection" class="w-12 px-4 py-3">
+        <input type="checkbox" [checked]="allSelectedOnPage()" (change)="toggleSelectAllOnPage(true)"/>
+      </th>
+
+      <th *ngFor="let col of columns" (click)="sortBy(col)" class="px-4 py-3 cursor-pointer select-none">
+        <div class="flex items-center gap-2">
+          <span class="font-medium text-gray-700">{{ col.label }}</span>
+          <span *ngIf="col.sortable !== false" class="text-gray-400">
+          <svg *ngIf="sortKey !== col.key" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20"
+               fill="none"
+               stroke="currentColor">
+          <path d="M6 8l4-4 4 4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 12l4 4 4-4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <svg *ngIf="sortKey === col.key && sortDir === 'asc'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"
+               viewBox="0 0 20 20" fill="none" stroke="currentColor">
+          <path d="M6 12l4-4 4 4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <svg *ngIf="sortKey === col.key && sortDir === 'desc'" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4"
+               viewBox="0 0 20 20" fill="none" stroke="currentColor">
+          <path d="M6 8l4 4 4-4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          </span>
+        </div>
+      </th>
+
+      @if (entityType) {
+        <th class="w-24 px-4 py-3">Ações</th>
+      }
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let row of pagedData; let i = index" (click)="onRowClickInternal(row)"
+        class="border-t border-gray-100 hover:bg-amber-200 cursor-pointer">
+      <td *ngIf="showSelection" class="px-4 py-3">
+        <input type="checkbox" [checked]="isSelected(row)" (click)="$event.stopPropagation()"
+               (change)="toggleSelect(row, true)"/>
+      </td>
+      <td *ngFor="let col of columns" class="px-4 py-3 align-top break-words">
+        <ng-container *ngIf="col.template; else defaultCell">
+          <ng-container *ngTemplateOutlet="col.template; context: { $implicit: row }"></ng-container>
+        </ng-container>
+        <ng-template #defaultCell>{{ getProp(row, col.key) }}</ng-template>
+      </td>
+      @if (entityType) {
+        <td class="px-4 py-3">
+          <div class="flex items-center gap-2">
+            <button (click)="$event.stopPropagation(); evaluateBid(row)"
+                    class="text-sm px-2 py-1 rounded-md border border-gray-200 hover:bg-gray-50 cursor-pointer">Analisar
+            </button>
+            <button (click)="$event.stopPropagation(); previewRational(row)"
+                    class="text-sm px-2 py-1 rounded-md border border-red-200 text-red-600 hover:bg-red-50 cursor-pointer">
+              Visualizar
+            </button>
+          </div>
+        </td>
+      }
+    </tr>
+
+    <tr *ngIf="!pagedData || pagedData.length === 0">
+      <td [attr.colspan]="(columns.length || 0) + (showSelection ? 2 : 1)" class="px-4 py-6 text-center text-gray-500">
+        No records found.
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- Pagination -->
+<div class="px-4 py-3 border-t border-gray-100 flex items-center justify-between">
+  <div class="text-sm text-gray-600">A exibir {{ startRecord }} - {{ endRecord }} de {{ filteredData.length }}</div>
+  <div class="flex items-center gap-2">
+    <button (click)="goToPage(1)" [disabled]="page === 1"
+            class="px-2 py-1 rounded-md border border-gray-200 text-sm disabled:opacity-50">Primeiro
+    </button>
+    <button (click)="goToPage(page-1)" [disabled]="page === 1"
+            class="px-2 py-1 rounded-md border border-gray-200 text-sm disabled:opacity-50">Anterior
+    </button>
+    <span class="px-3 text-sm">Página</span>
+    <input type="number" [(ngModel)]="pageInput" (change)="goToPage(pageInput)" min="1" [max]="totalPages"
+           class="w-16 rounded-md border border-gray-200 px-2 py-1 text-sm"/>
+
+
+    <button (click)="goToPage(page+1)" [disabled]="page === totalPages"
+            class="px-2 py-1 rounded-md border border-gray-200 text-sm disabled:opacity-50">Próximo
+    </button>
+    <button (click)="goToPage(totalPages)" [disabled]="page === totalPages"
+            class="px-2 py-1 rounded-md border border-gray-200 text-sm disabled:opacity-50">Último
+    </button>
+  </div>
+</div>
+
+<app-modal-box [isOpen]="isModalOpen" title="Confirma Análise?"
+               (closed)="isModalOpen = false" (confirmed)="onConfirmModal()">
+  <p>Confirma a análise do concurso?</p>
+</app-modal-box>

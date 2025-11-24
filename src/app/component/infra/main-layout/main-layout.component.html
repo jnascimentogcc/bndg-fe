@@ -1,11 +1,16 @@
-<div class="container-main">
-  <div class="container-navbar">
-    <app-navbar/>
-  </div>
-  <div class="container-body">
-    <app-sidebar/>
-    <div class="container-router-outlet">
+<div class="bg-gray-100 min-h-screen">
+  <!-- Header -->
+  <app-header-bar></app-header-bar>
+
+  <!-- Content wrapper -->
+  <div class="pt-14 flex">
+
+    <!-- Sidebar -->
+    <app-sidebar></app-sidebar>
+
+    <!-- Main content -->
+    <main class="flex-1 p-6">
       <router-outlet></router-outlet>
-    </div>
+    </main>
   </div>
 </div>

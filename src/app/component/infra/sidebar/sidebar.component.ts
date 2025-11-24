@@ -5,27 +5,25 @@ import {Router} from '@angular/router';
   selector: 'app-sidebar',
   imports: [],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.css'
+  styleUrl: './sidebar.component.css',
 })
 export class SidebarComponent {
 
   router = inject(Router)
 
-  goResume() {
-    this.router.navigate(['/resume']).then();
+  protected goHome() {
+    this.router.navigate(['']).then();
   }
 
-  goBidding() {
-    this.router.navigate(['/bidding']).then();
+  protected goListResume() {
+    this.router.navigate(['/list-resume']).then();
   }
 
-  goProject() {
-    this.router.navigate(['/project']).then();
+  protected goListBid() {
+    this.router.navigate(['/list-bid']).then();
   }
 
-  logout() {
-    localStorage.removeItem('token');
-    sessionStorage.removeItem('token');
-    this.router.navigate(['/']).then()
+  protected goListProject() {
+    this.router.navigate(['/list-project']).then();
   }
 }
