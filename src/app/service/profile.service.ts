@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {BiddingListResponse, BiddingResponse, ProfileListResponse} from '../model/interfaces';
 import {ActivatedRoute} from '@angular/router';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,6 @@ export class ProfileService {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' // TODO: + localStorage.getItem('token'),
     });
-    return this.httpClient.get<ProfileListResponse>(`http://localhost:5000/profile/list/${idBidding}`, {headers})
+    return this.httpClient.get<ProfileListResponse>(`${environment.apiURL}/profile/list/${idBidding}`, {headers})
   }
 }
