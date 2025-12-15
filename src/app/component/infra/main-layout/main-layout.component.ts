@@ -1,13 +1,13 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
-import {NavbarComponent} from '../navbar/navbar.component';
+import {HeaderBarComponent} from '../header-bar/header-bar.component';
 import {SidebarComponent} from '../sidebar/sidebar.component';
 
 @Component({
   selector: 'app-main-layout',
   imports: [
     RouterOutlet,
-    NavbarComponent,
+    HeaderBarComponent,
     SidebarComponent
   ],
   templateUrl: './main-layout.component.html',

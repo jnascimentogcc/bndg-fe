@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {BiddingListResponse, BiddingResponse, CandidateListResponse, ProfileListResponse} from '../model/interfaces';
 import {ActivatedRoute} from '@angular/router';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,6 @@ export class CandidateService {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' // TODO: + localStorage.getItem('token'),
     });
-    return this.httpClient.get<CandidateListResponse>(`http://localhost:5000/candidate/list/${idProfile}`, {headers})
+    return this.httpClient.get<CandidateListResponse>(`${environment.apiURL}/candidate/list/${idProfile}`, {headers})
   }
 }

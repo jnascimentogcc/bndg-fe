@@ -1,0 +1,25 @@
+<div class="bg-white rounded-xl shadow-sm p-6">
+  <h2 class="text-xl font-semibold text-gray-800 mb-4">Lista de Concursos</h2>
+  <p class="text-gray-600">
+    <app-dynamic-table
+      [columns]="arrColumns"
+      [data]="arrBid"
+      [pageSizeOptions]="[10]"
+      (evaluateClick)="onEvaluate($event)"
+      (previewClick)="onPreview($event)"
+      entityType="NONE"
+    >
+    </app-dynamic-table>
+  </p>
+  <div class="flex justify-center ">
+    <button class="bg-amber-500 shadow-lg hover:shadow-xl text-white px-4 py-2 rounded-md mt-4" (click)="openUpload()">
+      Adicionar Novo Concurso
+    </button>
+  </div>
+</div>
+
+<app-upload-bid [isOpen]="isUploadOpen" title="Upload do Concurso"
+               (closed)="isUploadOpen = false" (confirmed)="onConfirmUpload()">
+</app-upload-bid>
+
+<app-spinner [isLoading]="isLoading"></app-spinner>
